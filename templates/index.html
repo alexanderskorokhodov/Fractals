@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<a style="text-decoration:none;" href="/"><h1 style="margin-top: 1em;">{% block title %} Фракталы {% endblock %}</h1></a>
+<div class="page" style="display: flex; flex-direction: row;">
+
+    <div class="fractals" style="width: 40%;height:90%;margin-right:auto;margin-left:auto;">
+        {% for link, i in fractals %}
+            <a href="fractal/{{link}}"><img style="border-radius: 0.5em; border: 1px gray solid;width: 10em;height:10em;margin:1em;" src="{{url_for('static', filename=i)}}" class="fractal" style="width: 100%; min-height: 20em; height: 100%; border: 1px gray solid; margin: 1em 0em; border-radius: 0.5em;"/></a>
+
+        {% endfor %}
+    </div>
+
+    <div class="panel" style="width: 40%;height:90%;margin-right:auto;margin-left:auto;">
+        
+        
+        
+            <h1>Общие параметры</h1>
+            <form method="post">
+			    <div class="form-group">
+                  <label for="center_cx">Центр по Х cx:</label>
+                  <input type="number" step="0.01" style="border-radius: 0.5em; border: 1px gray solid;" name="center_cx" value="center_cx">
+                </div>
+                <div class="form-group">
+                  <label for="center_cy">Центр по Y cy:</label>
+                  <input type="number" step="0.01" style="border-radius: 0.5em; border: 1px gray solid;" name="center_cy" value="center_cy">
+                </div>
+
+                <h2>Параметры вычислений</h2>
+                <div class="form-group">
+                  <label for="max_iter">max. итераций:</label>
+                  <input type="number" style="border-radius: 0.5em; border: 1px gray solid;" name="max_iter" value="max_iter">
+                </div>
+                <div class="form-group">
+                  <label for="iter_func">Функция:</label>
+                  <select id="iter_func" style="border-radius: 0.5em; border: 1px gray solid;" name="iter_func" class="form-control">
+                      <option value="julia">Julia</option>
+                  </select>
+                </div>
+                <div id="julia_params" style="display:none">
+                    <div class="fbox-text">
+                        <label for="julia_r">real:</label>
+                        <input type="text" style="border-radius: 0.5em; border: 1px gray solid;" name="julia_r" value="julia_r">
+                    </div>
+                    <div class="fbox-text">
+                        <label for="julia_i">imag:</label>
+                        <input style="border-radius: 0.5em; border: 1px gray solid;" type="text" name="julia_i" value="julia_i">
+                    </div>
+                </div>
+                <div style="width: 100%;display:flex;">
+                    <input name="submit_button" type="submit" style="min-width:5em;margin-right: auto;" class="btn btn-primary">Вычислить</input>
+                </div>
+
+            </form>
+
+    </div>
+</div>
+{% endblock %}

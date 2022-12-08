@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<a style="text-decoration:none;"  href="/"><h1 style="margin-top: 1em;">{% block title %} Фракталы {% endblock %}</h1></a>
+<div class="page" style="display: flex; flex-direction: row;">
+    <div class="fractalInterface" style="width: 600px;height:600px;margin-right:auto;margin-left:auto;">
+        <img src="{{url_for('static', filename=img)}}" class="fractal" style="width: 100%; min-height: 20em; height: 100%; border: 1px gray solid; margin: 1em 0em; border-radius: 0.5em;"></img>
+        <div class="actions" style="width: 100%; display: flex; flex-direction: row;">
+            <a href="#" class="button" id="btn-download" download="{{url_for('static', filename=img)}}">Download</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
